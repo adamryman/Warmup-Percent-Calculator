@@ -5,7 +5,7 @@ var generateCombinations = function (first,second) {
 		var d = first.slice(0);
 		d.push(second[i]);
 		c.push(d);
-	}	
+	}
 
 	console.log(c);
 	console.log("");
@@ -27,6 +27,9 @@ var keepSplitting = function (a,b) {
 
 var start = function (a) {
 	for(var i = 0; i < a.length; i++){
+		a[i] = a[i] * 2;
+	}
+	for(var i = 0; i < a.length; i++){
 		b = a.slice(j,j+1);
 		c = a.slice(j+1,a.length);
 		keepSplitting(b,c);
@@ -44,24 +47,29 @@ Array.prototype.sum = function () {
 		total += this[i];
 	}
 	return total;
-} 
+}
 
 var getWeights = function (weight) {
 	var possibleWeights = Object.keys(allCombinations);
 	var finalWeight = 0;
 	for(var i = 0; i < possibleWeights.length; i++){
-		if(Math.abs(weight - finalWeight) > (weight - possibleWeights[i])){
+		if(Math.abs(weight - finalWeight) > Math.abs(weight - possibleWeights[i])){
 			finalWeight = possibleWeights[i];
 		}
 	}
 
-	return(allCombinations[finalWeight]);
+	var returnCombinations = [];
+	for(var i = 0; i < allCombinations[finalWeight].length; i++){
+		returnCombinations[i] = allCombinations[finalWeight][i] / 2;
+	}
+
+	return(returnCombinations);
 }
 
 
 
 
 
-start([88,66,44,22,11,5.5]);
+start([44,33,22,11,5.5,2.25]);
 
-alert(getWeights(30));
+alert(getWeights(200));
