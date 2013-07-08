@@ -1,4 +1,7 @@
 var allCombinations = {};
+var bar;
+var plates;
+
 var generateCombinations = function (first,second) {
 	var c = [];
 	for(var i = 0; i < second.length; i++){
@@ -7,10 +10,8 @@ var generateCombinations = function (first,second) {
 		c.push(d);
 	}
 
-	console.log(c);
-	console.log("");
 	for(var i = 0; i < c.length; i++){
-		allCombinations[c[i].sum()] = c[i];
+		allCombinations[c[i].sum() + bar] = c[i];
 	}
 	return c;
 };
@@ -23,7 +24,7 @@ var keepSplitting = function (a,b) {
 			keepSplitting(c[i], b.slice(i+1,b.length));
 		}
 	}
-}
+};
 
 var start = function (a) {
 	for(var i = 0; i < a.length; i++){
@@ -34,12 +35,11 @@ var start = function (a) {
 		c = a.slice(j+1,a.length);
 		keepSplitting(b,c);
 	}
-	allCombinations[a.sum()] = a.splice(0);
+	allCombinations[a.sum() + bar] = a.splice(0);
 	for(var j = 0; j < j.length; j++){
 		allCombinations[a[j]] = a[j];
 	}
-	console.log(allCombinations);
-}
+};
 
 Array.prototype.sum = function () {
 	var total = 0;
@@ -47,7 +47,7 @@ Array.prototype.sum = function () {
 		total += this[i];
 	}
 	return total;
-}
+};
 
 var getWeights = function (weight) {
 	var possibleWeights = Object.keys(allCombinations);
@@ -64,12 +64,33 @@ var getWeights = function (weight) {
 	}
 
 	return(returnCombinations);
+};
+
+
+var parsePlates = function () {
+	var plates = [];
+	var strings = document.getElementById('plates').value.split(",");
+	for(var i = 0; i < strings.length; i++){
+		var plateWeight = strings[i].trim();
+		if(plateWeight && !isNaN(plateWeight)){
+			plates.push(parseFloat(plateWeight));
+		}
+	}
+
+	if(plates){
+		return plates.sort(function(a,b){return b - a;});
+	}
 }
 
+var update = function () {
+	bar = parseFloat(document.getElementById('bar').value);
+	plates = parsePlates();
+	var onerepmax = parseFloat(document.getElementById('onerepmax').value);
 
+	start(plates);
+	console.log(getWeights(onerepmax));
+};
 
-
-
-start([44,33,22,11,5.5,2.25]);
-
-alert(getWeights(200));
+document.getElementById('plates').onkeyup = update;
+document.getElementById('bar').onkeyup = update;
+document.getElementById('onerepmax').onkeyup = update;
