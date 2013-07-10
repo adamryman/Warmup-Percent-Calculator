@@ -43,7 +43,6 @@ var getPlates = function (weight, plateWeights, bar) {
 	return result;
 };
 
-
 var parsePlates = function () {
 	var plates = [];
 	var strings = document.getElementById('plates').value.split(",");
@@ -62,11 +61,30 @@ var update = function () {
 	bar = parseFloat(document.getElementById('bar').value);
 	plates = parsePlates();
 	var onerepmax = parseFloat(document.getElementById('onerepmax').value);
-	document.getElementById('per1out').innerHTML = getPlates(onerepmax, plates, bar);
-	console.log(getPlates(onerepmax, plates, bar));
+	per1 = document.getElementById('per1').value / 100;
+	per2 = document.getElementById('per2').value / 100;
+	per3 = document.getElementById('per3').value / 100;
+	per4 = document.getElementById('per4').value / 100;
+	per5 = document.getElementById('per5').value / 100;
+
+
+
+	document.getElementById('per1out').innerHTML = getPlates(onerepmax * per1, plates, bar);
+	document.getElementById('per2out').innerHTML = getPlates(onerepmax * per2, plates, bar);
+	document.getElementById('per3out').innerHTML = getPlates(onerepmax * per3, plates, bar);
+	document.getElementById('per4out').innerHTML = getPlates(onerepmax * per4, plates, bar);
+	document.getElementById('per5out').innerHTML = getPlates(onerepmax * per5, plates, bar);
+	document.getElementById('maxout').innerHTML = getPlates(onerepmax, plates, bar);
 
 };
 
 document.getElementById('plates').onkeyup = update;
 document.getElementById('bar').onkeyup = update;
+document.getElementById('onerepmax').onkeyup = update;
+
+document.getElementById('per1').onkeyup = update;
+document.getElementById('per2').onkeyup = update;
+document.getElementById('per3').onkeyup = update;
+document.getElementById('per4').onkeyup = update;
+document.getElementById('per5').onkeyup = update;
 document.getElementById('onerepmax').onkeyup = update;
