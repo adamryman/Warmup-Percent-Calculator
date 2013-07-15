@@ -61,22 +61,21 @@ var update = function () {
 	bar = parseFloat(document.getElementById('bar').value);
 	plates = parsePlates();
 	var onerepmax = parseFloat(document.getElementById('onerepmax').value);
-	per1 = document.getElementById('per1').value / 100;
-	per2 = document.getElementById('per2').value / 100;
-	per3 = document.getElementById('per3').value / 100;
-	per4 = document.getElementById('per4').value / 100;
-	per5 = document.getElementById('per5').value / 100;
 
-
-
-	document.getElementById('per1out').innerHTML = getPlates(onerepmax * per1, plates, bar);
-	document.getElementById('per2out').innerHTML = getPlates(onerepmax * per2, plates, bar);
-	document.getElementById('per3out').innerHTML = getPlates(onerepmax * per3, plates, bar);
-	document.getElementById('per4out').innerHTML = getPlates(onerepmax * per4, plates, bar);
-	document.getElementById('per5out').innerHTML = getPlates(onerepmax * per5, plates, bar);
+	for(var i = 1; i < 7; i++){
+		calculatePercent(i, onerepmax, plates, bar);
+	}
+	
 	document.getElementById('maxout').innerHTML = getPlates(onerepmax, plates, bar);
 
 };
+
+var calculatePercent = function (row, onerepmax, plates, bar) {
+	var percent = document.getElementById('per' + row).value / 100;
+	var rep = document.getElementById('rep' + row).value;
+	var usedPlates = getPlates(onerepmax * percent, plates, bar);
+	document.getElementById('per' + row.toString() + 'out').innerHTML = 'W:' + (usedPlates.sum() * 2 + bar) + ' | ' + usedPlates + " | TW: " + (usedPlates.sum() * 2 + bar)*rep;
+}
 
 document.getElementById('plates').onkeyup = update;
 document.getElementById('bar').onkeyup = update;
@@ -87,4 +86,4 @@ document.getElementById('per2').onkeyup = update;
 document.getElementById('per3').onkeyup = update;
 document.getElementById('per4').onkeyup = update;
 document.getElementById('per5').onkeyup = update;
-document.getElementById('onerepmax').onkeyup = update;
+document.getElementById('per6').onkeyup = update;
