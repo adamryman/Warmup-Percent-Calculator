@@ -65,7 +65,7 @@ var update = function () {
 	for(var i = 1; i < 7; i++){
 		calculatePercent(i, onerepmax, plates, bar);
 	}
-	
+
 	document.getElementById('maxout').innerHTML = getPlates(onerepmax, plates, bar);
 
 };
@@ -74,7 +74,11 @@ var calculatePercent = function (row, onerepmax, plates, bar) {
 	var percent = document.getElementById('per' + row).value / 100;
 	var rep = document.getElementById('rep' + row).value;
 	var usedPlates = getPlates(onerepmax * percent, plates, bar);
-	document.getElementById('per' + row.toString() + 'out').innerHTML = 'W:' + (usedPlates.sum() * 2 + bar) + ' | ' + usedPlates + " | TW: " + (usedPlates.sum() * 2 + bar)*rep;
+
+	var x=document.getElementById('data').rows[row].cells;
+	x[3].innerHTML=(usedPlates.sum() * 2 + bar);
+	x[4].innerHTML=usedPlates;
+	x[5].innerHTML=(usedPlates.sum() * 2 + bar)*rep;
 }
 
 document.getElementById('plates').onkeyup = update;

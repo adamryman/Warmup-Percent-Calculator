@@ -4,23 +4,69 @@
 <body>
   <div id="adam">
     <div id="border">
-      <span id="max">One Rep Max<input type="text" id="onerepmax" name="weight" value="" size="8"></span>
+      <span id="max">One Rep Max<input type="text" id="onerepmax" value="" size="8"></span>
       <div id="settings">
         <span id="bar-holder">Bar<input type="text" id="bar" name="bar" value="45" size="8"></span>
-        <span id="plates-holder">Plates<input type="text" id="plates" name="plates" value="44,33,22,11,5.5,2.75" size="25"></span>
+        <span id="plates-holder">Plates<input type="text" id="plates" value="44,33,22,11,5.5,2.75" size="25"></span>
       </div>
-      <div id="display-plates">
-        <div><span id="plates-holder">P 1<input type="text" id="per1" name="per1" value="90" size="1"><input type="text" id="rep1" name="rep1" value="5" size="1"></span><span id="per1out"></span></div>
-        <span id="plates-holder">P 2<input type="text" id="per2" name="per2" value="80" size="4"><input type="text" id="rep2" name="rep2" value="5" size="4"></span><span id="per2out"></span>
-        <br>
-        <span id="plates-holder">P 3<input type="text" id="per3" name="per3" value="70" size="4"><input type="text" id="rep3" name="rep3" value="5" size="4"></span><span id="per3out"></span>
-        <br>
-        <span id="plates-holder">P 4<input type="text" id="per4" name="per4" value="50" size="4"><input type="text" id="rep4" name="rep4" value="5" size="4"></span><span id="per4out"></span>
-        <br>
-        <span id="plates-holder">P 5<input type="text" id="per5" name="per5" value="25" size="4"><input type="text" id="rep5" name="rep5" value="5" size="4"></span><span id="per5out"></span>
-        <br>
-        <span id="plates-holder">P 6<input type="text" id="per6" name="per6" value="25" size="4"><input type="text" id="rep6" name="rep6" value="5" size="4"></span><span id="per6out"></span>
-        <br>
+      <table id="data">
+        <tr>
+          <th></th>
+          <th>%</th>
+          <th>Reps</th>
+          <th>Weight</th>
+          <th>Plates</th>
+          <th>Total Weight</th>
+        </tr>
+        <tr class="odd">
+          <td>1</td>
+          <td><input type="text" id="per1" value="90"></td>
+          <td><input type="text" id="rep1" value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="text" id="per2" value="90"></td>
+          <td><input type="text" id="rep2" value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="odd">
+          <td>3</td>
+          <td><input type="text" id="per3" value="90"></td>
+          <td><input type="text" id="rep3" value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><input type="text" id="per4" value="90"></td>
+          <td><input type="text" id="rep4"  value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="odd">
+          <td>5</td>
+          <td><input type="text" id="per5" value="90"></td>
+          <td><input type="text" id="rep5" value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><input type="text" id="per6" value="90"></td>
+          <td><input type="text" id="rep6" value="5"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
         Max Out<br><span id="maxout"></span>
       </div>
     </div>

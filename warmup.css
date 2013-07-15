@@ -1,8 +1,20 @@
-#border { width:380px; border: 3px solid gray; padding: 10px; background-color: #BFFF00; -moz-border-radius: 15px; border-radius: 15px; }
+#border { width:280px; border: 3px solid gray; padding: 10px; background-color: #BFFF00; -moz-border-radius: 15px; border-radius: 15px; }
 body {
   font-size: 11pt;
 }
 input[type="text"]
 {
     width:25px
+}
+.odd {
+  background-color: #7BA600;
+}
+#data {
+  border-collapse: collapse;
+}
+#plates{
+  width:150px;
+}
+#onerepmax{
+  width:50px;
 }
