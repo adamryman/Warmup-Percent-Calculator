@@ -1,3 +1,3 @@
 Warmup-Percent-Calculator
 =========================
-Located at: http://admryman.com/warmup
+Located at: http://adamryman.com/warmup
