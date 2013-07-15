@@ -1,9 +1,6 @@
-var bar;
-var plates;
-
 Array.prototype.sum = function () {
 	var total = 0;
-	for(var i = 0; i < this.length; i++){
+	for (var i = 0; i < this.length; i++) {
 		total += this[i];
 	}
 	return total;
@@ -13,7 +10,7 @@ var getPlates = function (weight, plateWeights, bar) {
 	if (!plateWeights || plateWeights.length < 1) {
 		return null;
 	}
-	if (weight >= (plateWeights.sum()*2 + bar)){
+	if (weight >= (plateWeights.sum()*2 + bar)) {
 		return plateWeights;
 	}
 	var currentPlates = plateWeights.slice(0);
@@ -26,7 +23,7 @@ var getPlates = function (weight, plateWeights, bar) {
 	while (oneSide >= lightestPlate || currentPlates.length < 1) {
 		lightestPlate = currentPlates[currentPlates.length - 1];
 		var found = true;
-		for (var i = 0; i < currentPlates.length; i++){
+		for (var i = 0; i < currentPlates.length; i++) {
 			var plate = currentPlates[i];
 			if (oneSide-plate >= 0) {
 				currentPlates.splice(currentPlates.indexOf(plate), 1);
@@ -46,13 +43,13 @@ var getPlates = function (weight, plateWeights, bar) {
 var parsePlates = function () {
 	var plates = [];
 	var strings = document.getElementById('plates').value.split(",");
-	for(var i = 0; i < strings.length; i++){
+	for (var i = 0; i < strings.length; i++) {
 		var plateWeight = strings[i].trim();
-		if(plateWeight && !isNaN(plateWeight)){
+		if (plateWeight && !isNaN(plateWeight)) {
 			plates.push(parseFloat(plateWeight));
 		}
 	}
-	if(plates){
+	if (plates) {
 		return plates.sort(function(a,b){return b - a;});
 	}
 };
@@ -70,7 +67,7 @@ var calculatePercent = function (row, onerepmax, plates, bar) {
 
 var calculateOverallTotal = function () {
 	var total = 0;
-	for(var i = 1; i < 7; i++){
+	for (var i = 1; i < 7; i++) {
 		var number = parseFloat(document.getElementById('data').rows[i].cells[5].innerHTML);
 		total += number;
 	}
@@ -83,12 +80,12 @@ var saveState = function (bar, plates) {
 	state +=  "b=" + bar;
 	state += "&p=" + plates;
 	state += '&pe=';
-	for(var i = 1; i < 7; i++){
+	for (var i = 1; i < 7; i++) {
 		state+= document.getElementById('per' + i).value + ",";
 	}
 	state = state.substring(0, state.length - 1);
 	state += "&r=";
-	for(var i = 1; i < 7; i++){
+	for (var i = 1; i < 7; i++) {
 		state+= document.getElementById('rep' + i).value + ",";
 	}
 	state = state.substring(0, state.length - 1);
@@ -97,23 +94,23 @@ var saveState = function (bar, plates) {
 };
 
 function loadState() {
-	if ( window.location.hash ) {
+	if (window.location.hash) {
 		var state = window.location.hash.substring(1);
 		var keyVals = state.split("&");
-		for ( var i = 0; i < keyVals.length; i++ ) {
+		for (var i = 0; i < keyVals.length; i++ ) {
 			var keyVal = keyVals[i].split("=");
-			if ( keyVal[0]=="b" ) {
+			if (keyVal[0]=="b" ) {
 				document.getElementById("bar").value = keyVal[1];
 			}
-			else if ( keyVal[0]=="p" ) {
+			else if (keyVal[0]=="p") {
 				document.getElementById("plates").value= keyVal[1];
 			}
-			else if ( keyVal[0]=="pe" ) {
+			else if (keyVal[0]=="pe") {
 				for(var j = 1; j < 7; j++){
 					document.getElementById('per' + j).value = (keyVal[1].split(','))[j - 1];
 				}
 			}
-			else if ( keyVal[0]=="r" ) {
+			else if (keyVal[0]=="r") {
 				for(var k = 1; k < 7; k++){
 					document.getElementById('rep' + k).value = (keyVal[1].split(','))[k - 1];
 				}
@@ -127,7 +124,7 @@ var update = function () {
 	plates = parsePlates();
 	var onerepmax = parseFloat(document.getElementById('onerepmax').value);
 
-	for(var i = 1; i < 7; i++){
+	for (var i = 1; i < 7; i++) {
 		calculatePercent(i, onerepmax, plates, bar);
 	}
 	calculateOverallTotal();
