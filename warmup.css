@@ -1,6 +1,5 @@
-#border { width:280px; border: 3px solid gray; padding: 10px; background-color: #BFFF00; -moz-border-radius: 15px; border-radius: 15px; }
+#border { width:280px; border: 2px solid gray; padding: 7px; background-color: #BFFF00; -moz-border-radius: 15px; border-radius: 15px; }
 body {
-  font-size: 11pt;
 }
 input[type="text"]
 {
@@ -11,6 +10,8 @@ input[type="text"]
 }
 #data {
   border-collapse: collapse;
+  text-align: center;
+  font-size: 14px;
 }
 #plates{
   width:150px;
