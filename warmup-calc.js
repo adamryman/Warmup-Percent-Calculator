@@ -57,6 +57,61 @@ var parsePlates = function () {
 	}
 };
 
+var calculatePercent = function (row, onerepmax, plates, bar) {
+	var percent = document.getElementById('per' + row).value / 100;
+	var rep = document.getElementById('rep' + row).value;
+	var usedPlates = getPlates(onerepmax * percent, plates, bar);
+
+	var x=document.getElementById('data').rows[row].cells;
+	x[3].innerHTML=(usedPlates.sum() * 2 + bar);
+	x[4].innerHTML=usedPlates;
+	x[5].innerHTML=(usedPlates.sum() * 2 + bar)*rep;
+};
+
+var saveState = function (bar, plates) {
+	var state = "#";
+	state +=  "b=" + bar;
+	state += "&p=" + plates;
+	state += '&pe=';
+	for(var i = 1; i < 7; i++){
+		state+= document.getElementById('per' + i).value + ",";
+	}
+	state = state.substring(0, state.length - 1);
+	state += "&r=";
+	for(var i = 1; i < 7; i++){
+		state+= document.getElementById('rep' + i).value + ",";
+	}
+	state = state.substring(0, state.length - 1);
+
+	window.location = state;
+};
+
+function loadState() {
+	if ( window.location.hash ) {
+		var state = window.location.hash.substring(1);
+		var keyVals = state.split("&");
+		for ( var i = 0; i < keyVals.length; i++ ) {
+			var keyVal = keyVals[i].split("=");
+			if ( keyVal[0]=="b" ) {
+				document.getElementById("bar").value = keyVal[1];
+			}
+			else if ( keyVal[0]=="p" ) {
+				document.getElementById("plates").value= keyVal[1];
+			}
+			else if ( keyVal[0]=="pe" ) {
+				for(var i = 1; i < 7; i++){
+					document.getElementById('per' + i).value = (keyVal[1].split(','))[i - 1];
+				}
+			}
+			else if ( keyVal[0]=="r" ) {
+				for(var i = 1; i < 7; i++){
+					document.getElementById('rep' + i).value = (keyVal[1].split(','))[i - 1];
+				}
+			}
+		}
+	}
+}
+
 var update = function () {
 	bar = parseFloat(document.getElementById('bar').value);
 	plates = parsePlates();
@@ -67,19 +122,8 @@ var update = function () {
 	}
 
 	document.getElementById('maxout').innerHTML = getPlates(onerepmax, plates, bar);
-
+	saveState(bar, plates);
 };
-
-var calculatePercent = function (row, onerepmax, plates, bar) {
-	var percent = document.getElementById('per' + row).value / 100;
-	var rep = document.getElementById('rep' + row).value;
-	var usedPlates = getPlates(onerepmax * percent, plates, bar);
-
-	var x=document.getElementById('data').rows[row].cells;
-	x[3].innerHTML=(usedPlates.sum() * 2 + bar);
-	x[4].innerHTML=usedPlates;
-	x[5].innerHTML=(usedPlates.sum() * 2 + bar)*rep;
-}
 
 document.getElementById('plates').onkeyup = update;
 document.getElementById('bar').onkeyup = update;
@@ -91,3 +135,11 @@ document.getElementById('per3').onkeyup = update;
 document.getElementById('per4').onkeyup = update;
 document.getElementById('per5').onkeyup = update;
 document.getElementById('per6').onkeyup = update;
+
+document.getElementById('rep1').onkeyup = update;
+document.getElementById('rep2').onkeyup = update;
+document.getElementById('rep3').onkeyup = update;
+document.getElementById('rep4').onkeyup = update;
+document.getElementById('rep5').onkeyup = update;
+document.getElementById('rep6').onkeyup = update;
+window.onload = loadState;
