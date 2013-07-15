@@ -99,13 +99,13 @@ function loadState() {
 				document.getElementById("plates").value= keyVal[1];
 			}
 			else if ( keyVal[0]=="pe" ) {
-				for(var i = 1; i < 7; i++){
-					document.getElementById('per' + i).value = (keyVal[1].split(','))[i - 1];
+				for(var j = 1; j < 7; j++){
+					document.getElementById('per' + j).value = (keyVal[1].split(','))[j - 1];
 				}
 			}
 			else if ( keyVal[0]=="r" ) {
-				for(var i = 1; i < 7; i++){
-					document.getElementById('rep' + i).value = (keyVal[1].split(','))[i - 1];
+				for(var k = 1; k < 7; k++){
+					document.getElementById('rep' + k).value = (keyVal[1].split(','))[k - 1];
 				}
 			}
 		}
