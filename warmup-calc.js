@@ -62,10 +62,20 @@ var calculatePercent = function (row, onerepmax, plates, bar) {
 	var rep = document.getElementById('rep' + row).value;
 	var usedPlates = getPlates(onerepmax * percent, plates, bar);
 
-	var x=document.getElementById('data').rows[row].cells;
+	var x = document.getElementById('data').rows[row].cells;
 	x[3].innerHTML=(usedPlates.sum() * 2 + bar);
 	x[4].innerHTML=usedPlates;
 	x[5].innerHTML=(usedPlates.sum() * 2 + bar)*rep;
+};
+
+var calculateOverallTotal = function () {
+	var total = 0;
+	for(var i = 1; i < 7; i++){
+		var number = parseFloat(document.getElementById('data').rows[i].cells[5].innerHTML);
+		total += number;
+	}
+  document.getElementById('total_weight').innerHTML = total;
+
 };
 
 var saveState = function (bar, plates) {
@@ -120,7 +130,7 @@ var update = function () {
 	for(var i = 1; i < 7; i++){
 		calculatePercent(i, onerepmax, plates, bar);
 	}
-
+	calculateOverallTotal();
 	document.getElementById('maxout').innerHTML = getPlates(onerepmax, plates, bar);
 	saveState(bar, plates);
 };
