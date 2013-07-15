@@ -1,9 +1,10 @@
 #border { width:280px; border: 2px solid gray; padding: 7px; background-color: #BFFF00; -moz-border-radius: 15px; border-radius: 15px; }
 body {
 }
-input[type="text"]
+input[type="number"]
 {
     width:25px
+
 }
 .odd {
   background-color: #7BA600;
@@ -18,4 +19,10 @@ input[type="text"]
 }
 #onerepmax{
   width:50px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
